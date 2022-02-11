@@ -3,9 +3,7 @@ pipeline{
       agent {
                 docker {
                 image 'openjdk:8'
-		steps{
-			sh "java -version"
-		}
+		
 		
                 }
             }
