@@ -1,14 +1,31 @@
 pipeline{
-    agent any
-    stages{
-      
-      stage("Pushing the artifact to nexus"){
-            steps{
-                script{
-                    echo "Love You Muskan"
+
+      agent {
+                docker {
+                image 'maven:3-openjdk-11'
+
                 }
             }
-        }
-      
-    }
+        
+        stages{
+
+              stage('Quality Gate Status Check'){
+                  steps{
+                      script{
+			      withSonarQubeEnv('sonar-cube') { 
+			      sh "mvn clean sonar:sonar"
+                       	     	}
+			      timeout(time: 1, unit: 'HOURS') {
+			      def qg = waitForQualityGate()
+				      if (qg.status != 'OK') {
+					   error "Pipeline aborted due to quality gate failure: ${qg.status}"
+				      }
+                    		}
+		    	    sh "mvn clean install"
+		  
+                 	}
+               	 }  
+              }	
+		
+            }	       	     	         
 }
