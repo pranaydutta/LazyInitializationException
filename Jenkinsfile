@@ -6,7 +6,7 @@ pipeline{
       stage("Pushing the artifact to nexus"){
             steps{
                 script{
-                    echo 'Love You Muskan'
+                    echo "Love You Muskan"
                 }
             }
         }
