@@ -15,6 +15,7 @@ public class CommonService {
 
     private ItemRepository itemRepository;
 
+    //Constructor Injection
     public CommonService(CustomerRepository customerRepository, ItemRepository itemRepository) {
         this.customerRepository = customerRepository;
         this.itemRepository = itemRepository;
