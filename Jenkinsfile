@@ -1,17 +1,14 @@
 pipeline{
+	agent none
 
-      agent {
-                docker {
-                image 'openjdk:8'
-		
-		
-                }
-            }
         
         stages{
 
               stage('Quality Gate Status Check'){
                   steps{
+			  agent {
+				  docker "openjdk:8"
+			  }
                       script{
 			      withSonarQubeEnv('sonar-cube') { 
 			      sh "mvn clean sonar:sonar"
