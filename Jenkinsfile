@@ -1,4 +1,4 @@
-
+o
 pipeline{
     agent any
     stages{
@@ -6,7 +6,7 @@ pipeline{
       stage("Pushing the artifact to nexus"){
             steps{
                 script{
-                    sh 'mvn clean deploy'
+                    echo 'Love You Muskan'
                 }
             }
         }
