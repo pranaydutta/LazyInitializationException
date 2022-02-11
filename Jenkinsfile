@@ -5,10 +5,11 @@ pipeline{
         stages{
 
               stage('Quality Gate Status Check'){
-                  steps{
-			  agent {
+		       agent {
 				  docker "openjdk:8"
 			  }
+                  steps{
+			 
                       script{
 			      withSonarQubeEnv('sonar-cube') { 
 			      sh "mvn clean sonar:sonar"
