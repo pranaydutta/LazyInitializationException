@@ -2,8 +2,10 @@ pipeline{
 
       agent {
                 docker {
-                image 'adoptopenjdk/openjdk11:alpine-jre'
-		args '--privileged -v $HOME/.m2:/home/jenkins/.m2 -ti -u 496 -e MAVEN_CONFIG=/home/jenkins/.m2 -e MAVEN_OPTS=-Xmx2048m'
+                image 'openjdk:8'
+		steps{
+			sh "java -version"
+		}
 		
                 }
             }
